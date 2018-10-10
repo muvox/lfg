@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.sprinfgramework.org/schema/security">
+<head>
+    <title>Bookstore offerings</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div th:each="poster : ${posters}" class="card border-secondary mb-3" style="max-width: 20rem;">
+    <div th:text="${poster.title}" class="card-header"></div>
+    <div class="card-body">
+        <h4 th:text="${poster.user}" class="card-title"></h4>
+        <p th:text="${poster.details}" class="card-text"></p>
+        <h4 th:text="${poster.platform}" class="card-subtitle mb-2 text-muted"></h4>
+        <ul>
+            <li th:each="item : ${poster.usersSigned}" th:text="${item}"></li>
+        </ul>
+
+
+    </div>
+</div>
+
+
+</body>
+</html>
