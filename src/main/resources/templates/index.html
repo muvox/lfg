@@ -1,14 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.sprinfgramework.org/schema/security">
 <head>
-    <title>Bookstore offerings</title>
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+    <title>Looking For Gamer</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+
+    <link type="text/css" rel="stylesheet" href="css/custom.min.css"/>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-<div th:each="poster : ${posters}" class="card border-secondary mb-3" style="max-width: 20rem;">
-    <div th:text="${poster.title}" class="card-header"></div>
+<div class="card mb-3" th:each="poster : ${posters}"  style="max-width: 20rem;">
+    <h3 class="card-header" th:text="${poster.title}"></h3>
+    <div class="card-body">
+        <h5 class="card-title" th:text="${poster.game}"></h5>
+        <h6 class="card-subtitle text-muted" th:text="'Looking for' + ${poster.playerAmount}+' players'"></h6>
+    </div>
+
+
     <div class="card-body">
         <h4 th:text="${poster.user}" class="card-title"></h4>
         <p th:text="${poster.details}" class="card-text"></p>
