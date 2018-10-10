@@ -1,35 +1,42 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.sprinfgramework.org/schema/security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns="http://www.sprinfgramework.org/schema/security">
 <head>
     <title>Looking For Gamer</title>
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
 
     <link type="text/css" rel="stylesheet" href="css/custom.min.css"/>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+    <div  class="cards">
+        <div th:each="poster : ${posters}" class="card" style="min-height: 30rem;minwidth: 20rem;max-width: 20rem; max-height: 30rem;">
 
-<div class="card mb-3" th:each="poster : ${posters}"  style="max-width: 20rem;">
-    <h3 class="card-header" th:text="${poster.title}"></h3>
-    <div class="card-body">
-        <h5 class="card-title" th:text="${poster.game}"></h5>
-        <h6 class="card-subtitle text-muted" th:text="'Looking for' + ${poster.playerAmount}+' players'"></h6>
+            <h4 class="card-header" th:text="${poster.title}"></h4>
+
+            <div class="card-body">
+                <h5 class="card-title" th:text="${poster.game}"></h5>
+                <h6 class="card-subtitle text-muted" th:text="'Looking for' + ${poster.playerAmount}+' players'"></h6>
+            </div>
+
+
+            <div class="card-body">
+                <h4 th:text="${poster.user}" class="card-title"></h4>
+                <p th:text="${poster.details}" class="card-text"></p>
+                <h4 th:text="'Platform: '+${poster.platform}" class="card-subtitle mb-2 text-muted"></h4>
+
+                <h6 class="card-subtitle text-muted">Players signed</h6>
+                <ul>
+                    <li th:each="item : ${poster.usersSigned}" th:text="${item}"></li>
+
+
+                </ul>
+
+
+            </div>
+        </div>
     </div>
-
-
-    <div class="card-body">
-        <h4 th:text="${poster.user}" class="card-title"></h4>
-        <p th:text="${poster.details}" class="card-text"></p>
-        <h4 th:text="${poster.platform}" class="card-subtitle mb-2 text-muted"></h4>
-        <ul>
-            <li th:each="item : ${poster.usersSigned}" th:text="${item}"></li>
-        </ul>
-
-
-    </div>
-</div>
-
 
 </body>
 </html>
