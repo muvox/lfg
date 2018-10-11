@@ -5,6 +5,7 @@ import com.a1704471.lookingforgamer.domain.PosterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,5 +31,11 @@ public class PosterController {
     public String save(Poster poster){
         postRepo.save(poster);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deletePoster(@PathVariable("id") Long posterId, Model model){
+        postRepo.deleteById(posterId);
+        return "redirect:../";
     }
 }

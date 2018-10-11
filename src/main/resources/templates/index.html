@@ -10,8 +10,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<a href="/add">New poster</a>
-
+<div class="container">
+    <div class="bs-component" style="margin-bottom:1rem;">
+    <a href="/add" class="btn btn-success">New poster</a>
+    </div>
     <div  class="cards">
         <div th:each="poster : ${posters}" class="card" style="min-height: 30rem;minwidth: 20rem;max-width: 20rem; max-height: 30rem;">
 
@@ -35,10 +37,12 @@
 
                 </ul>
 
+                <a th:href="@{/delete/{id}(id=${poster.id})}" class="btn btn-danger" style="position:absolute; right:0; bottom:0; margin-right: 0.5rem; margin-bottom: 0.5rem;">Remove</a>
 
             </div>
         </div>
     </div>
+</div>
 
 </body>
 </html>

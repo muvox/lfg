@@ -4690,7 +4690,8 @@ input[type="button"].btn-block {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
   overflow: hidden;
-  margin: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 .cards__item {
   display: flex;
