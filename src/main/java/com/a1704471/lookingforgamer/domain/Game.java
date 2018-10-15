@@ -1,15 +1,27 @@
 package com.a1704471.lookingforgamer.domain;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
+import java.util.Map;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Game {
 
+    private long id;
     private String name;
     private String coverUrl;
 
 
     public Game() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -26,5 +38,11 @@ public class Game {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonProperty("cover")
+    private void unpackNested(Map<String, Object> cover){
+        this.coverUrl = (String)cover.get("url");
     }
 }

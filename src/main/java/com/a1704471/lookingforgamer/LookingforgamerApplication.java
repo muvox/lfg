@@ -95,6 +95,7 @@ import org.springframework.web.client.RestTemplate;
 			for(Poster poster : repo.findAll()){
 				log.info(poster.toString());
 			}
+
 		};
 	}
 }
