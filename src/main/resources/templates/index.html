@@ -15,31 +15,14 @@
     <a href="/add" class="btn btn-success">New poster</a>
     </div>
     <div  class="cards">
-        <div th:each="poster : ${posters}" class="card" style="min-height: 30rem;minwidth: 20rem;max-width: 20rem; max-height: 30rem;">
+        <div th:each="game : ${games}" class="card" style="min-height: 30rem;minwidth: 20rem;max-width: 20rem; max-height: 30rem;">
 
-            <h4 class="card-header" th:text="${poster.title}"></h4>
-
-            <div class="card-body">
-                <h5 class="card-title" th:text="${poster.game}"></h5>
-                <h6 class="card-subtitle text-muted" th:text="'Looking for' + ${poster.playerAmount}+' players'"></h6>
-            </div>
-
+            <h4 class="card-header" th:text="${game.name}"></h4>
 
             <div class="card-body">
-                <h4 th:text="${poster.user}" class="card-title"></h4>
-                <p th:text="${poster.details}" class="card-text"></p>
-                <h4 th:text="'Platform: '+${poster.platform}" class="card-subtitle mb-2 text-muted"></h4>
-
-                <h6 class="card-subtitle text-muted">Players signed</h6>
-                <ul>
-                    <li th:each="item : ${poster.usersSigned}" th:text="${item}"></li>
-
-
-                </ul>
-
-                <a th:href="@{/delete/{id}(id=${poster.id})}" class="btn btn-danger" style="position:absolute; right:0; bottom:0; margin-right: 0.5rem; margin-bottom: 0.5rem;">Remove</a>
-
+                <img th:src="${game.coverUrl}"/>
             </div>
+
         </div>
     </div>
 </div>

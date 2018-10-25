@@ -14,10 +14,10 @@ public class PosterController {
     @Autowired
     private PosterRepository postRepo;
 
-    @RequestMapping(value="/")
+    @RequestMapping(value="/posters")
     public String indexPage(Model model){
         model.addAttribute("posters", postRepo.findAll());
-        return "index";
+        return "posters";
     }
 
     @RequestMapping(value= "/add")
