@@ -15,8 +15,7 @@ public class Poster {
     @Version
     private Long version;
 
-    //PlaceHolder
-    String game;
+    Long gameId;
 
     Date dateLeft;
 
@@ -34,8 +33,8 @@ public class Poster {
 
     public Poster(){}
 
-    public Poster(String game, Date dateLeft, String title, String details, String user, String platform, int playerAmount) {
-        this.game = game;
+    public Poster(Long gameId, Date dateLeft, String title, String details, String user, String platform, int playerAmount) {
+        this.gameId = gameId;
         this.dateLeft = dateLeft;
         this.title = title;
         this.details = details;
@@ -92,12 +91,12 @@ public class Poster {
         this.user = user;
     }
 
-    public String getGame() {
-        return game;
+    public Long getGameId() {
+        return gameId;
     }
 
-    public void setGame(String game) {
-        this.game = game;
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
     }
 
     public String getPlatform() {
@@ -129,7 +128,7 @@ public class Poster {
         return "Poster{" +
                 "id=" + id +
                 ", version=" + version +
-                ", game='" + game + '\'' +
+                ", gameId='" + gameId + '\'' +
                 ", dateLeft=" + dateLeft +
                 ", title='" + title + '\'' +
                 ", details='" + details + '\'' +

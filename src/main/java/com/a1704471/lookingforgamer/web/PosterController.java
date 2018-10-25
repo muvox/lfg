@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 public class PosterController {
     @Autowired
@@ -31,6 +33,12 @@ public class PosterController {
     public String save(Poster poster){
         postRepo.save(poster);
         return "redirect:/";
+    }
+
+    @RequestMapping(value="/posters/{id}", method = RequestMethod.GET)
+    public String postersByGame(@PathVariable("id") Long gameId, Model model){
+        model.addAttribute("posters", postRepo.findByGameId(gameId));
+        return "posters";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
