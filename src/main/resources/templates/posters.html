@@ -3,32 +3,37 @@
       xmlns="http://www.sprinfgramework.org/schema/security">
 <head>
     <title>Looking For Gamer</title>
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
 
-    <link type="text/css" rel="stylesheet" href="css/custom.min.css"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/custom.min.css}"/>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <div class="container">
+
+    <h3 th:text="${gameName}"></h3>
     <div class="bs-component" style="margin-bottom:1rem;">
         <a href="/add" class="btn btn-success">New poster</a>
     </div>
-    <div  class="cards">
-        <div th:each="poster : ${posters}" class="card" style="min-height: 30rem;minwidth: 20rem;max-width: 20rem; max-height: 30rem;">
+    <div class="cards">
+        <div th:each="poster : ${posters}" class="card"
+             style="min-height: 30rem;minwidth: 20rem;max-width: 20rem; max-height: 30rem;">
 
-            <h4 class="card-header" th:text="${poster.title}"></h4>
-
+            <div class="card-header">
+                <h4 th:text="${poster.user}"></h4>
+                <h4 th:text="${poster.platform}" class="card-subtitle mb-2 text-muted"></h4>
+            </div>
             <div class="card-body">
-                <h5 class="card-title" th:text="${poster.gameId}"></h5>
                 <h6 class="card-subtitle text-muted" th:text="'Looking for' + ${poster.playerAmount}+' players'"></h6>
             </div>
 
 
             <div class="card-body">
-                <h4 th:text="${poster.user}" class="card-title"></h4>
                 <p th:text="${poster.details}" class="card-text"></p>
-                <h4 th:text="'Platform: '+${poster.platform}" class="card-subtitle mb-2 text-muted"></h4>
+            </div>
+            <div class="card-body">
+
 
                 <h6 class="card-subtitle text-muted">Players signed</h6>
                 <ul>
@@ -37,7 +42,8 @@
 
                 </ul>
 
-                <a th:href="@{/delete/{id}(id=${poster.id})}" class="btn btn-danger" style="position:absolute; right:0; bottom:0; margin-right: 0.5rem; margin-bottom: 0.5rem;">Remove</a>
+                <a th:href="@{/delete/{id}(id=${poster.id})}" class="btn btn-danger"
+                   style="position:absolute; right:0; bottom:0; margin-right: 0.5rem; margin-bottom: 0.5rem;">Remove</a>
 
             </div>
         </div>

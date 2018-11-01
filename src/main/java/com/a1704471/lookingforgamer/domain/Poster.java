@@ -9,13 +9,15 @@ import java.util.List;
 public class Poster {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Version
     private Long version;
 
     Long gameId;
+
+    String gameName;
 
     Date dateLeft;
 
@@ -31,9 +33,10 @@ public class Poster {
     int playerAmount;
     ArrayList<String> usersSigned;
 
-    public Poster(){}
+    public Poster() {
+    }
 
-    public Poster(Long gameId, Date dateLeft, String title, String details, String user, String platform, int playerAmount) {
+    public Poster(Long gameId, String gameName, Date dateLeft, String title, String details, String user, String platform, int playerAmount) {
         this.gameId = gameId;
         this.dateLeft = dateLeft;
         this.title = title;
@@ -41,6 +44,15 @@ public class Poster {
         this.user = user;
         this.platform = platform;
         this.playerAmount = playerAmount;
+        this.gameName = gameName;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
     public Long getId() {

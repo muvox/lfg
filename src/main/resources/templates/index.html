@@ -9,22 +9,51 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
-<body>
+<body style="padding-top:0">
+<h1 style="padding-left:1em">Looking For Gamer</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
 <div class="container">
+
     <div class="bs-component" style="margin-bottom:1rem;">
-    <a href="/add" class="btn btn-success">New poster</a>
     </div>
     <div  class="cards">
-        <a th:each="gameId : ${games}"  th:href="@{/posters/{id}(id=${gameId.id})}">
+        <a th:each="game : ${games}"  th:href="@{/posters/{id}(id=${game.id})}">
         <div class="card" style="flex-direction: row; padding:0; min-width: 25em;max-width:25em;">
 
 
 
             <div class="card-body" style="max-width: 9em">
-                <img th:src="${gameId.coverUrl}"/>
+                <img th:src="${game.coverUrl}"/>
             </div>
             <div class="card-header" style="text-align: center" >
-            <h4 class="card-header" style="width: 9em;position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%);" th:text="${gameId.name}"/>
+            <h4 class="card-header" style="width: 9em;position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%);" th:text="${game.name}"/>
 
             </div>
 
