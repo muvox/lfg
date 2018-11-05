@@ -2,12 +2,17 @@ package com.a1704471.lookingforgamer.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class Game {
 
 
+    @Id
     private long id;
 
     private String name;

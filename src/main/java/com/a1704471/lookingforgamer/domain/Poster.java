@@ -12,14 +12,11 @@ public class Poster {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Version
-    private Long version;
-
     Long gameId;
 
     String gameName;
 
-    Date dateLeft;
+    Date date;
 
     String title;
     String details;
@@ -31,14 +28,26 @@ public class Poster {
     String platform;
 
     int playerAmount;
+
     ArrayList<String> usersSigned;
 
     public Poster() {
     }
 
-    public Poster(Long gameId, String gameName, Date dateLeft, String title, String details, String user, String platform, int playerAmount) {
+
+    public Poster(Long gameId, String gameName, String title, String details, String user, String platform, int playerAmount){
         this.gameId = gameId;
-        this.dateLeft = dateLeft;
+        this.gameName = gameName;
+        this.title = title;
+        this.details = details;
+        this.user = user;
+        this.platform = platform;
+        this.playerAmount = playerAmount;
+    }
+
+    public Poster(Long gameId, String gameName, Date date, String title, String details, String user, String platform, int playerAmount) {
+        this.gameId = gameId;
+        this.date = date;
         this.title = title;
         this.details = details;
         this.user = user;
@@ -46,6 +55,7 @@ public class Poster {
         this.playerAmount = playerAmount;
         this.gameName = gameName;
     }
+
 
     public String getGameName() {
         return gameName;
@@ -63,20 +73,13 @@ public class Poster {
         this.id = id;
     }
 
-    public Long getVersion() {
-        return version;
+
+    public Date getDate() {
+        return date;
     }
 
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    public Date getDateLeft() {
-        return dateLeft;
-    }
-
-    public void setDateLeft(Date dateLeft) {
-        this.dateLeft = dateLeft;
+    public void setDate(Date dateLeft) {
+        this.date = dateLeft;
     }
 
     public String getTitle() {
@@ -139,9 +142,8 @@ public class Poster {
     public String toString() {
         return "Poster{" +
                 "id=" + id +
-                ", version=" + version +
                 ", gameId='" + gameId + '\'' +
-                ", dateLeft=" + dateLeft +
+                ", date=" + date +
                 ", title='" + title + '\'' +
                 ", details='" + details + '\'' +
                 ", user='" + user + '\'' +

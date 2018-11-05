@@ -14,41 +14,43 @@
 
     <h3 th:text="${gameName}"></h3>
     <div class="bs-component" style="margin-bottom:1rem;">
-        <a href="/add" class="btn btn-success">New poster</a>
+        <a th:href="@{/add{id}(id=${gameId})}" class="btn btn-success">New poster</a>
     </div>
-    <div class="cards">
-        <div th:each="poster : ${posters}" class="card"
-             style="min-height: 30rem;minwidth: 20rem;max-width: 20rem; max-height: 30rem;">
+    <div class="row h-20">
 
-            <div class="card-header">
-                <h4 th:text="${poster.user}"></h4>
-                <h4 th:text="${poster.platform}" class="card-subtitle mb-2 text-muted"></h4>
-            </div>
-            <div class="card-body">
-                <h6 class="card-subtitle text-muted" th:text="'Looking for' + ${poster.playerAmount}+' players'"></h6>
-            </div>
+            <div th:each="poster : ${posters}" class="col-lg">
 
-
-            <div class="card-body">
-                <p th:text="${poster.details}" class="card-text"></p>
-            </div>
-            <div class="card-body">
+                <div class="card-header">
+                    <h4 th:text="${poster.user}"></h4>
+                    <h4 th:text="${poster.platform}" class="card-subtitle mb-2 text-muted"></h4>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-subtitle text-muted"
+                        th:text="'Looking for' + ${poster.playerAmount}+' players'"></h6>
+                </div>
 
 
-                <h6 class="card-subtitle text-muted">Players signed</h6>
-                <ul>
-                    <li th:each="item : ${poster.usersSigned}" th:text="${item}"></li>
+                <div class="card-body">
+                    <p th:text="${poster.details}" class="card-text"></p>
+                </div>
+                <div class="card-body">
 
 
-                </ul>
+                    <h6 class="card-subtitle text-muted">Players signed</h6>
+                    <ul>
+                        <li th:each="item : ${poster.usersSigned}" th:text="${item}"></li>
 
-                <a th:href="@{/delete/{id}(id=${poster.id})}" class="btn btn-danger"
-                   style="position:absolute; right:0; bottom:0; margin-right: 0.5rem; margin-bottom: 0.5rem;">Remove</a>
 
+                    </ul>
+
+                    <a th:href="@{/delete/{id}(id=${poster.id})}" class="btn btn-danger"
+                       style="position:absolute; right:0; bottom:0; margin-right: 0.5rem; margin-bottom: 0.5rem;">Remove</a>
+
+                </div>
             </div>
         </div>
-    </div>
 </div>
+
 
 </body>
 </html>

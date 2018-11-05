@@ -3,10 +3,12 @@ package com.a1704471.lookingforgamer;
 import callback.OnSuccessCallback;
 import com.a1704471.lookingforgamer.domain.Game;
 
+import com.a1704471.lookingforgamer.domain.GameRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import wrapper.IGDBWrapper;
@@ -20,6 +22,9 @@ public class IGDBAccess {
     IGDBWrapper wrapper = new IGDBWrapper("252bbc66273907c6a81ad3cf92a8c00c", Version.STANDARD, true);
 
     ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private GameRepository gameRepo;
 
     String jsonia;
 
@@ -48,7 +53,6 @@ public class IGDBAccess {
             }
         });
 
-
         return games;
 
     }
@@ -64,12 +68,19 @@ public class IGDBAccess {
             System.out.println("Size of games "+games.size());
             System.out.print("Lists first games cover url"+games.get(0).getCoverUrl());
 
+            saveGames();
         } catch (Exception e) {
             System.out.println("Error occurred listing games "+e);
 
 
         }
 
+    }
+
+    public void saveGames() {
+        for(Game g : games){
+            gameRepo.save(g);
+        }
     }
 
 }

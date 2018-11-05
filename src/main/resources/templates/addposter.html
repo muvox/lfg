@@ -3,9 +3,9 @@
 <head>
     <title>Add book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
 
-    <link type="text/css" rel="stylesheet" href="css/custom.min.css"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/custom.min.css}"/>
 </head>
 <body>
 <div class="container">
@@ -16,8 +16,7 @@
             <legend>New poster</legend>
 
             <div class="form-group row">
-                <label for="gameId">Game</label>
-                <input class="form-control" type="text" id="gameId" th:field="*{gameId}"/>
+                <h3 th:text="${gameName}"></h3>
             </div>
 
             <div class="form-group row">
@@ -45,7 +44,10 @@
                 <label for="playerAmount">Number of players you are looking for</label>
                 <input class="form-control" type="number" id="playerAmount" th:field="*{playerAmount}"/>
             </div>
+            <input type="hidden" class="form-control"  th:attr="value=${gameId}" th:field="*{gameId}"/>
+            <input type="hidden"  class="form-control" th:attr="value=${gameName}" th:field="*{gameName}"/>
             <input type="submit" class="btn btn-primary" value="Save"/>
+
         </fieldset>
     </form>
 </div>

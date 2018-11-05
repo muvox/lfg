@@ -43,9 +43,9 @@
 
     <div class="bs-component" style="margin-bottom:1rem;">
     </div>
-    <div  class="cards">
+    <div  class="row">
         <a th:each="game : ${games}"  th:href="@{/posters/{id}(id=${game.id})}">
-        <div class="card" style="flex-direction: row; padding:0; min-width: 25em;max-width:25em;">
+        <div class="col-lg" >
 
 
 

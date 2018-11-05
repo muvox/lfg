@@ -1,6 +1,7 @@
 package com.a1704471.lookingforgamer;
 
 import com.a1704471.lookingforgamer.domain.Game;
+import com.a1704471.lookingforgamer.domain.GameRepository;
 import com.a1704471.lookingforgamer.domain.Poster;
 import com.a1704471.lookingforgamer.domain.PosterRepository;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @SpringBootApplication
@@ -22,7 +24,6 @@ public class LookingforgamerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LookingforgamerApplication.class, args);
 
-        data.startingGames();
 
 /*
 import org.springframework.http.HttpEntity;
@@ -47,8 +48,9 @@ import org.springframework.web.client.RestTemplate;
 	}
 
 	@Bean
-	public CommandLineRunner insertTestData(PosterRepository repo){
+	public CommandLineRunner insertTestData(PosterRepository repo, GameRepository gameRepo){
 		return (args) -> {
+
 			log.info("Inserting couple posters");
 
 			// Create dates to be inserted
@@ -66,7 +68,15 @@ import org.springframework.web.client.RestTemplate;
             Poster poster2 = new Poster(18472L,"Vanguard",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
             Poster poster3 = new Poster(18472L,"Vanguard",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
 
-            //create lists for users
+			Poster poster4 = new Poster(18472L,"Vanguard", date1,"LFG Mount Hyjal","Im lv 69 tank, fully geared. looking for a healer and 2 dps to mount hyjal","LeetTank69","PC", 4);
+			Poster poster5 = new Poster(18472L,"Vanguard",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
+			Poster poster6 = new Poster(18472L,"Vanguard",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
+
+			Poster poster7 = new Poster(18472L,"Vanguard", date1,"LFG Mount Hyjal","Im lv 69 tank, fully geared. looking for a healer and 2 dps to mount hyjal","LeetTank69","PC", 4);
+			Poster poster8 = new Poster(18472L,"Vanguard",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
+			Poster poster9 = new Poster(18472L,"Vanguard",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
+
+			//create lists for users
 			ArrayList<String> lista1 = new ArrayList<String>();
 			ArrayList<String> lista2 = new ArrayList<String>();
 			ArrayList<String> lista3 = new ArrayList<String>();
@@ -89,6 +99,13 @@ import org.springframework.web.client.RestTemplate;
 			repo.save(poster1);
 			repo.save(poster2);
 			repo.save(poster3);
+			repo.save(poster4);
+			repo.save(poster5);
+			repo.save(poster6);
+			repo.save(poster7);
+			repo.save(poster8);
+			repo.save(poster9);
+
 
 			log.info("Fetching poster info");
 
