@@ -30,11 +30,43 @@ public class IGDBAccess {
 
     List<Game> games;
 
+
     @Bean
+    public List<Game> listAllStartingGames(){
+        getPCGames();//TODO litanja metodeja jolla täytetään lista
+        return games;
+    }
+    @Bean
+    public List<Game> getPCGames(){
+
+        Parameters params = new Parameters()
+                .addFields("name,cover")
+                .addFilter("[release_dates.platform][eq]=6")
+                .addFilter("[release_dates.date][gt]=2015-01-01")
+                .addOffset("0");
+
+        wrapper.games(params, new OnSuccessCallback() {
+            @Override
+            public void onSuccess(JSONArray result) {
+
+                jsonia = result.toString();
+
+                System.out.println("Starting games Haku tulokset onSuccess :"+jsonia);
+
+                listofgames();
+            }
+
+            @Override
+            public void onError(Exception error) {
+                System.out.println(error);
+            }
+        });
+        return games;
+    }
+
     public List<Game> startingGames(){
-        Parameters params = new Parameters().addIds("18472,18228").addFields("name,cover");
-
-
+        Parameters params = new Parameters()
+                .addFields("*");
 
         wrapper.games(params, new OnSuccessCallback() {
             @Override
@@ -58,9 +90,32 @@ public class IGDBAccess {
     }
 
 
+    public List<Game> greatGameList(){
+        Parameters params = new Parameters()
+                .addFields("name,cover")
+                .addOffset("0")
+                .addExpand("game,game_modes");
+
+        wrapper.games(params, new OnSuccessCallback(){
+            @Override
+            public void onSuccess(JSONArray result) {
+
+                jsonia = result.toString();
+
+                System.out.println("Starting games Haku tulokset onSuccess :"+jsonia);
+
+                listofgames();
+            }
+
+            @Override
+            public void onError(Exception error) {
+                System.out.println(error);
+            }
+        });
+        return games;
+    }
+
     public void listofgames() {
-
-
 
         try {
             games = objectMapper.readValue(jsonia, new TypeReference<List<Game>>(){});
