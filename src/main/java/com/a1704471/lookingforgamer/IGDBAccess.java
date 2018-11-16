@@ -15,6 +15,7 @@ import wrapper.IGDBWrapper;
 import wrapper.Parameters;
 import wrapper.Version;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -23,118 +24,82 @@ public class IGDBAccess {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
+    private static int paginationCount = 10;
+
     @Autowired
     private GameRepository gameRepo;
 
     String jsonia;
 
-    List<Game> games;
+    List<Game> games = new ArrayList<Game>();
+
 
 
     @Bean
-    public List<Game> listAllStartingGames(){
-        getPCGames();//TODO litanja metodeja jolla täytetään lista
-        return games;
-    }
-    @Bean
-    public List<Game> getPCGames(){
+    public List<Game> getPCGames() {
+        for (int i = 0; i < paginationCount; i++) {
+            int offset = i*50;
+            Parameters params = new Parameters()
+                    .addFields("name,cover")
+                    .addFilter("[release_dates.platform][eq]=6")
+                    .addFilter("[release_dates.date][gt]=2010-01-01")
+                    .addFilter("[rating][gt]=75")
+                    .addFilter("[game_modes][eq]=1")
+                    .addLimit("50")
+                    .addOffset(Integer.toString(offset));
 
-        Parameters params = new Parameters()
-                .addFields("name,cover")
-                .addFilter("[release_dates.platform][eq]=6")
-                .addFilter("[release_dates.date][gt]=2015-01-01")
-                .addOffset("0");
+            wrapper.games(params, new OnSuccessCallback() {
+                @Override
+                public void onSuccess(JSONArray result) {
 
-        wrapper.games(params, new OnSuccessCallback() {
-            @Override
-            public void onSuccess(JSONArray result) {
+                    jsonia = result.toString();
 
-                jsonia = result.toString();
+                    System.out.println("Starting games Haku tulokset onSuccess :" + jsonia);
 
-                System.out.println("Starting games Haku tulokset onSuccess :"+jsonia);
+                    List<Game> uusiLista = listGames();
+                    games.addAll(uusiLista);
+                    System.out.println("Size of 'games' list: "+games.size());
 
-                listofgames();
-            }
+                    if(games.size()>=250){
+                        printGames(games);
+                        saveGames(games);
+                    }
 
-            @Override
-            public void onError(Exception error) {
-                System.out.println(error);
-            }
-        });
-        return games;
-    }
+                }
 
-    public List<Game> startingGames(){
-        Parameters params = new Parameters()
-                .addFields("*");
-
-        wrapper.games(params, new OnSuccessCallback() {
-            @Override
-            public void onSuccess(JSONArray result) {
-
-                jsonia = result.toString();
-
-                System.out.println("Starting games Haku tulokset onSuccess :"+jsonia);
-
-                listofgames();
-            }
-
-            @Override
-            public void onError(Exception error) {
-                System.out.println(error);
-            }
-        });
-
-        return games;
-
-    }
-
-
-    public List<Game> greatGameList(){
-        Parameters params = new Parameters()
-                .addFields("name,cover")
-                .addOffset("0")
-                .addExpand("game,game_modes");
-
-        wrapper.games(params, new OnSuccessCallback(){
-            @Override
-            public void onSuccess(JSONArray result) {
-
-                jsonia = result.toString();
-
-                System.out.println("Starting games Haku tulokset onSuccess :"+jsonia);
-
-                listofgames();
-            }
-
-            @Override
-            public void onError(Exception error) {
-                System.out.println(error);
-            }
-        });
+                @Override
+                public void onError(Exception error) {
+                    System.out.println(error);
+                }
+            });
+        }
         return games;
     }
 
-    public void listofgames() {
-
+     public List<Game> listGames() {
+        List<Game> peliLista = new ArrayList<Game>();
         try {
-            games = objectMapper.readValue(jsonia, new TypeReference<List<Game>>(){});
-
-            System.out.println("Size of games "+games.size());
-            System.out.print("Lists first games cover url"+games.get(0).getCoverUrl());
-
-            saveGames();
+            peliLista = objectMapper.readValue(jsonia, new TypeReference<List<Game>>(){});
+            System.out.println("Size of games "+peliLista.size());
         } catch (Exception e) {
             System.out.println("Error occurred listing games "+e);
-
-
         }
+        //printGames(peliLista);
 
+        jsonia = "";
+        return peliLista;
     }
 
-    public void saveGames() {
-        for(Game g : games){
+    public void saveGames(List<Game> gamesList) {
+        for(Game g : gamesList){
             gameRepo.save(g);
+        }
+        System.out.println(games.size()+" is the number of games saved to the repo.");
+    }
+
+    public void printGames(List<Game> listOfPrintableGames){
+        for(Game g: listOfPrintableGames){
+            System.out.println("pelei lista - Games ID: "+g.getId());
         }
     }
 
