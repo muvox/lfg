@@ -1,15 +1,14 @@
-package com.a1704471.lookingforgamer;
+package com.a1704471.lookingforgamer.misc;
 
 import callback.OnSuccessCallback;
-import com.a1704471.lookingforgamer.domain.Game;
+import com.a1704471.lookingforgamer.model.Game;
 
-import com.a1704471.lookingforgamer.domain.GameRepository;
+import com.a1704471.lookingforgamer.repository.GameRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import wrapper.IGDBWrapper;
 import wrapper.Parameters;
@@ -35,7 +34,7 @@ public class IGDBAccess {
 
 
 
-    @Bean
+
     public List<Game> getPCGames() {
         for (int i = 0; i < paginationCount; i++) {
             int offset = i*50;

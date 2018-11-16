@@ -1,5 +1,6 @@
-package com.a1704471.lookingforgamer.domain;
+package com.a1704471.lookingforgamer.repository;
 
+import com.a1704471.lookingforgamer.model.Poster;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

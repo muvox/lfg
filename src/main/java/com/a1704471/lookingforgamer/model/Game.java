@@ -1,4 +1,4 @@
-package com.a1704471.lookingforgamer.domain;
+package com.a1704471.lookingforgamer.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

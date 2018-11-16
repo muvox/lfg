@@ -1,21 +1,18 @@
-package com.a1704471.lookingforgamer.web;
+package com.a1704471.lookingforgamer.controller;
 
-import com.a1704471.lookingforgamer.domain.Game;
-import com.a1704471.lookingforgamer.domain.GameRepository;
-import com.a1704471.lookingforgamer.domain.Poster;
-import com.a1704471.lookingforgamer.domain.PosterRepository;
+import com.a1704471.lookingforgamer.misc.IGDBAccess;
+import com.a1704471.lookingforgamer.model.Game;
+import com.a1704471.lookingforgamer.repository.GameRepository;
+import com.a1704471.lookingforgamer.model.Poster;
+import com.a1704471.lookingforgamer.repository.PosterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,11 +25,21 @@ public class PosterController {
     @Autowired
     private GameRepository gameRepo;
 
+    @Autowired
+    IGDBAccess gameApi;
+
     @RequestMapping(value="/posters")
     public String indexPage(Model model){
         model.addAttribute("posters", postRepo.findAll());
         return "posters";
     }
+
+    @RequestMapping(value="fetchPage")
+    public String posterFetch(){
+        gameApi.getPCGames();
+
+        return "fetchPage";
+        }
 
     @RequestMapping(value= "/add{id}", method = RequestMethod.GET)
     public String addPoster(@PathVariable("id") Long gameId, Model model){

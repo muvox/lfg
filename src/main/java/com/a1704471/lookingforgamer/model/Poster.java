@@ -1,4 +1,4 @@
-package com.a1704471.lookingforgamer.domain;
+package com.a1704471.lookingforgamer.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;

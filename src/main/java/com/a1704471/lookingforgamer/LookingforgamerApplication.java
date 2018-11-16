@@ -1,9 +1,9 @@
 package com.a1704471.lookingforgamer;
 
-import com.a1704471.lookingforgamer.domain.Game;
-import com.a1704471.lookingforgamer.domain.GameRepository;
-import com.a1704471.lookingforgamer.domain.Poster;
-import com.a1704471.lookingforgamer.domain.PosterRepository;
+import com.a1704471.lookingforgamer.misc.IGDBAccess;
+import com.a1704471.lookingforgamer.repository.GameRepository;
+import com.a1704471.lookingforgamer.model.Poster;
+import com.a1704471.lookingforgamer.repository.PosterRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 @SpringBootApplication
@@ -30,7 +29,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.controller.client.RestTemplate;
 
         RestTemplate restTemplate = new RestTemplate();
 
