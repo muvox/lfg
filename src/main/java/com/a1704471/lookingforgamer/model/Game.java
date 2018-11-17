@@ -5,14 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class Game {
 
-
     @Id
+    @NotNull
     private long id;
 
     private String name;

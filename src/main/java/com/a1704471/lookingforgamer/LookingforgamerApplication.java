@@ -23,27 +23,6 @@ public class LookingforgamerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LookingforgamerApplication.class, args);
 
-
-/*
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.controller.client.RestTemplate;
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        final HttpHeaders headers = new HttpHeaders();
-        headers.set("user-key", "252bbc66273907c6a81ad3cf92a8c00c");
-        headers.set("Accept","application/json");
-
-        final HttpEntity<String> entity = new HttpEntity<String>(headers);
-
-        ResponseEntity<String> response =  restTemplate.exchange("https://api-2445582011268.apicast.io/games/?fields=name,popularity&order=popularity:desc?filter[game_modes][2]", HttpMethod.GET, entity, String.class);
-
-        System.out.println("Rest fetch :"+response.getBody());
-*/
-
 	}
 
 	@Bean

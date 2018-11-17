@@ -9,12 +9,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import wrapper.IGDBWrapper;
 import wrapper.Parameters;
 import wrapper.Version;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -23,7 +26,7 @@ public class IGDBAccess {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    private static int paginationCount = 10;
+    private static int paginationCount = 2;
 
     @Autowired
     private GameRepository gameRepo;
@@ -32,20 +35,20 @@ public class IGDBAccess {
 
     List<Game> games = new ArrayList<Game>();
 
+    Date date = new Date();
+    String modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
 
-
-
+    @Bean
     public List<Game> getPCGames() {
-        for (int i = 0; i < paginationCount; i++) {
-            int offset = i*50;
             Parameters params = new Parameters()
-                    .addFields("name,cover")
-                    .addFilter("[release_dates.platform][eq]=6")
-                    .addFilter("[release_dates.date][gt]=2010-01-01")
-                    .addFilter("[rating][gt]=75")
-                    .addFilter("[game_modes][eq]=1")
-                    .addLimit("50")
-                    .addOffset(Integer.toString(offset));
+                    .addFields("name,cover") //From api we need a name and url for cover image
+                    .addFilter("[release_dates.platform][eq]=6") //Platform 6 = PC games windows
+                    .addFilter("[version_parent][not_exists]=1") //exlcude special editions of a game (to recieve less of the same game)
+                    .addFilter("[release_dates.date][gt]=2010-01-01") //release date after 2010
+                    //.addFilter("[release_dates.date][lt]="+modifiedDate+"") //games that have been released until this date
+                    .addFilter("[rating][gt]=75") //games with rating of over 75/100
+                    .addFilter("[game_modes][eq]=2") //includes game mode 2 = multiplayer
+                    .addLimit("50");
 
             wrapper.games(params, new OnSuccessCallback() {
                 @Override
@@ -59,10 +62,16 @@ public class IGDBAccess {
                     games.addAll(uusiLista);
                     System.out.println("Size of 'games' list: "+games.size());
 
-                    if(games.size()>=250){
-                        printGames(games);
-                        saveGames(games);
+                    for(Game g : games){
+                        Long longValue = g.getId();
+                        if(longValue==null) {
+                            games.remove(g);
+                            System.out.println("Removed a game from list because of null id. Game was: "+g.getName());
+                        }
                     }
+
+                    saveGames(games);
+
 
                 }
 
@@ -71,7 +80,7 @@ public class IGDBAccess {
                     System.out.println(error);
                 }
             });
-        }
+
         return games;
     }
 
@@ -93,7 +102,7 @@ public class IGDBAccess {
         for(Game g : gamesList){
             gameRepo.save(g);
         }
-        System.out.println(games.size()+" is the number of games saved to the repo.");
+        System.out.println(gamesList.size()+" is the number of games saved to the repo.");
     }
 
     public void printGames(List<Game> listOfPrintableGames){

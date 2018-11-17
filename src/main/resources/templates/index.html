@@ -41,29 +41,21 @@
 </nav>
 
 <div class="container">
-    <a th:href="@{fetchPage}" class="btn btn-danger" onClick="setTimeout(refreshPage, 3000);">Fetch posters</a>
-
     <div class="bs-component" style="margin-bottom:1rem;">
     </div>
-    <div class="row around-xs">
+    <div class="row around-md">
+
         <a th:each="game : ${games}" th:href="@{/posters/{id}(id=${game.id})}"
            style="overflow: hidden;padding-bottom: 1em; padding-right: 1em;">
-            <div class="col-sx">
-                <div class="card" style="flex-direction:row; overflow: hidden;">
-
-
-                    <div class="card-body" style="max-width: 9em">
+            <div class="col-lg-4 d-flex align-items-fill">
+                    <div class="card" style="max-width: 15rem; flex-direction: row;">
                         <img th:src="${game.coverUrl}"/>
-                    </div>
-                    <div class="card-header" style="text-align: center; overflow: hidden;">
-                        <p class="card-header"
-                            style="width: 9em;position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%);"
-                            th:text="${game.name}"/>
-                    </div>
 
-                </div>
+                        <div class="card-header" th:text="${game.name}"/>
+                    </div>
             </div>
         </a>
+
     </div>
 </div>
 
