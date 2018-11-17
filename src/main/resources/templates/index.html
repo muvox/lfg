@@ -43,15 +43,15 @@
 <div class="container">
     <div class="bs-component" style="margin-bottom:1rem;">
     </div>
-    <div class="row around-md">
+    <div class="row around-md" id="baska">
 
-        <a th:each="game : ${games}" th:href="@{/posters/{id}(id=${game.id})}" class="w-100 col-lg-4 d-flex align-items-stretch"
+        <a th:each="game : ${games}" th:href="@{/posters/{id}(id=${game.id})}" class="w-100 h-100 col-lg-4 d-flex align-items-stretch"
            style="overflow: hidden;padding-bottom: 1em; padding-right: 1em;">
 
                     <div class="card w-100" style="flex-direction: row;">
                         <img th:src="${game.coverUrl}"/>
 
-                        <div class="card-header w-100" th:text="${game.name}"/>
+                        <div class="card-header w-100 text-center" style="font-size:3vh;" th:text="${game.name}"/>
                     </div>
 
         </a>

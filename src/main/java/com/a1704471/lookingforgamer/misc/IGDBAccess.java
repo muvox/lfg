@@ -63,14 +63,14 @@ public class IGDBAccess {
                     System.out.println("Size of 'games' list: "+games.size());
 
                     for(Game g : games){
-                        Long longValue = g.getId();
-                        if(longValue==null) {
-                            games.remove(g);
-                            System.out.println("Removed a game from list because of null id. Game was: "+g.getName());
+                        if(g.getCoverUrl() == null) {
+                            g.setCoverUrl("/image/placeholder.png");
+                            System.out.println("Replaced cover url for game:  "+g.getName());
                         }
                     }
 
                     saveGames(games);
+                    printGames(games);
 
 
                 }
@@ -107,7 +107,7 @@ public class IGDBAccess {
 
     public void printGames(List<Game> listOfPrintableGames){
         for(Game g: listOfPrintableGames){
-            System.out.println("pelei lista - Games ID: "+g.getId());
+            System.out.println("pelei lista - Games ID: "+g.getId()+" Image url: "+g.getCoverUrl());
         }
     }
 

@@ -588,6 +588,9 @@ pre code {
   .container {
     max-width: 1140px;
   }
+  #baska{
+      min-height: 7em;
+  }
 }
 
 .container-fluid {
