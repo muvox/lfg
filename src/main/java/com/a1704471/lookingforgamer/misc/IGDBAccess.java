@@ -45,7 +45,7 @@ public class IGDBAccess {
                     .addFilter("[release_dates.platform][eq]=6") //Platform 6 = PC games windows
                     .addFilter("[version_parent][not_exists]=1") //exlcude special editions of a game (to recieve less of the same game)
                     .addFilter("[release_dates.date][gt]=2010-01-01") //release date after 2010
-                    //.addFilter("[release_dates.date][lt]="+modifiedDate+"") //games that have been released until this date
+                    //.addFilter("[release_dates.date][lt]="+modifiedDate+"") //games that have been released until this date || does not seem to work
                     .addFilter("[rating][gt]=75") //games with rating of over 75/100
                     .addFilter("[game_modes][eq]=2") //includes game mode 2 = multiplayer
                     .addLimit("50");
