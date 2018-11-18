@@ -29,13 +29,20 @@ public class Poster {
 
     int playerAmount;
 
+    boolean done;
+
     ArrayList<String> usersSigned;
 
     public Poster() {
     }
 
+    public Poster(boolean done){
+        this.done = done;
+    }
+
     public Poster(String details){
         this.details = details;
+        this.done = false;
     }
 
 
@@ -47,6 +54,7 @@ public class Poster {
         this.user = user;
         this.platform = platform;
         this.playerAmount = playerAmount;
+        this.done = false;
     }
 
     public Poster(Long gameId, String gameName, Date date, String title, String details, String user, String platform, int playerAmount) {
@@ -58,8 +66,16 @@ public class Poster {
         this.platform = platform;
         this.playerAmount = playerAmount;
         this.gameName = gameName;
+        this.done = false;
     }
 
+    public boolean getDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
     public String getGameName() {
         return gameName;
@@ -145,7 +161,8 @@ public class Poster {
     @Override
     public String toString() {
         return "Poster{" +
-                "id=" + id +
+                "done="+done+
+                ", id=" + id +
                 ", gameId='" + gameId + '\'' +
                 ", date=" + date +
                 ", title='" + title + '\'' +

@@ -1,18 +1,21 @@
 package com.a1704471.lookingforgamer.controller;
 
 import com.a1704471.lookingforgamer.misc.IGDBAccess;
+import com.a1704471.lookingforgamer.model.AppUser;
 import com.a1704471.lookingforgamer.model.Game;
+import com.a1704471.lookingforgamer.model.SignupForm;
+import com.a1704471.lookingforgamer.repository.AppUserRepository;
 import com.a1704471.lookingforgamer.repository.GameRepository;
 import com.a1704471.lookingforgamer.model.Poster;
 import com.a1704471.lookingforgamer.repository.PosterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +30,12 @@ public class PosterController {
 
     @Autowired
     IGDBAccess gameApi;
+
+    @Autowired
+    BCryptPasswordEncoder bencoder;
+
+    @Autowired
+    private AppUserRepository userRepo;
 
     @RequestMapping(value="/posters")
     public String indexPage(Model model){
@@ -75,4 +84,7 @@ public class PosterController {
         postRepo.deleteById(posterId);
         return "redirect:../posters";
     }
+
+
+
 }

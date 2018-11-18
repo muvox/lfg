@@ -32,15 +32,20 @@ public class ApiController {
     }
 
     @GetMapping("/posters/{id}")
-    public List<Poster> getPosters(@PathVariable("id") Long gameId){
+    public List<Poster> getPostersByGame(@PathVariable("id") Long gameId){
         return postRepo.findByGameId(gameId);
     }
 
+    @GetMapping("/posters")
+    public List<Poster> getPosters(){
+        return (List<Poster>) postRepo.findAll();
+    }
+
     @PutMapping("/{id}")
-    public void editPoster(@PathVariable long id, @RequestBody Poster poster){
+    public void posterDone(@PathVariable long id, @RequestBody Poster poster){
         Poster existingPoster = postRepo.findById(id).get();
         Assert.notNull(existingPoster, "Poster not found");
-        existingPoster.setDetails(poster.getDetails());
+        existingPoster.setDone(poster.getDone());
         postRepo.save(existingPoster);
     }
 
