@@ -42,17 +42,17 @@ public class LookingforgamerApplication {
 			String user3 = "ActionJackson";
 
 			//create posters
-			Poster poster1 = new Poster(18472L,"Vanguard", date1,"LFG Mount Hyjal","Im lv 69 tank, fully geared. looking for a healer and 2 dps to mount hyjal","LeetTank69","PC", 4);
-            Poster poster2 = new Poster(18472L,"Vanguard",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
-            Poster poster3 = new Poster(18472L,"Vanguard",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
+			Poster poster1 = new Poster(445L,"Rome: Total War - Barbarian Invasion", date1,"LFG Mount Hyjal","Im lv 69 tank, fully geared. looking for a healer and 2 dps to mount hyjal","LeetTank69","PC", 4);
+            Poster poster2 = new Poster(445L,"Rome: Total War - Barbarian Invasion",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
+            Poster poster3 = new Poster(445L,"Rome: Total War - Barbarian Invasion",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
 
-			Poster poster4 = new Poster(18472L,"Vanguard", date1,"LFG Mount Hyjal","Im lv 69 tank, fully geared. looking for a healer and 2 dps to mount hyjal","LeetTank69","PC", 4);
-			Poster poster5 = new Poster(18472L,"Vanguard",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
-			Poster poster6 = new Poster(18472L,"Vanguard",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
+			Poster poster4 = new Poster(2352L,"Bloodline Champions", date1,"LFG Mount Hyjal","Im lv 69 tank, fully geared. looking for a healer and 2 dps to mount hyjal","LeetTank69","PC", 4);
+			Poster poster5 = new Poster(2352L,"Bloodline Champions",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
+			Poster poster6 = new Poster(2352L,"Bloodline Champions",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
 
-			Poster poster7 = new Poster(18472L,"Vanguard", date1,"LFG Mount Hyjal","Im lv 69 tank, fully geared. looking for a healer and 2 dps to mount hyjal","LeetTank69","PC", 4);
-			Poster poster8 = new Poster(18472L,"Vanguard",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
-			Poster poster9 = new Poster(18472L,"Vanguard",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
+			Poster poster7 = new Poster(9047L,"Vanguard", date1,"LFG Mount Hyjal","Im lv 69 tank, fully geared. looking for a healer and 2 dps to mount hyjal","LeetTank69","PC", 4);
+			Poster poster8 = new Poster(9047L,"Vanguard",date3,"Looking for some kickass teammates","Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Looking for some kickass teammates Im tired of doing solos and am looking for couple of capable shooters to frag some noobs with, hit me up! Lo","NastyKillah_GER","PC",3);
+			Poster poster9 = new Poster(9047L,"Vanguard",date2, "Need help with Vordt","Im currently stuck on the first boss and would really appreciate some help with him.","DidNotGitGud","PS4",1);
 
 			//create lists for users
 			ArrayList<String> lista1 = new ArrayList<String>();

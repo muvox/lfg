@@ -34,6 +34,10 @@ public class Poster {
     public Poster() {
     }
 
+    public Poster(String details){
+        this.details = details;
+    }
+
 
     public Poster(Long gameId, String gameName, String title, String details, String user, String platform, int playerAmount){
         this.gameId = gameId;
