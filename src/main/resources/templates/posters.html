@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body style="margin-top:0px; padding-top: 1px;">
-<a th:href="@{/}">
+<a th:href="@{/web/}">
     <h2 style="padding-left:1em">Looking For Gamer</h2>
 </a>
 
@@ -19,7 +19,7 @@
 
     <h3 th:text="${gameName}"></h3>
     <div class="bs-component" style="margin-bottom:1rem;">
-        <a th:href="@{/add{id}(id=${gameId})}" class="btn btn-success">New poster</a>
+        <a th:href="@{/web/add{id}(id=${gameId})}" class="btn btn-success">New poster</a>
     </div>
     <div class="row around-xs">
 
@@ -48,7 +48,7 @@
 
                     </ul>
 
-                    <a th:href="@{/delete/{id}(id=${poster.id})}" class="btn btn-danger" style="right:0; bottom:0;">Remove</a>
+                    <a th:href="@{/web/delete/{id}(id=${poster.id})}" class="btn btn-danger" style="right:0; bottom:0;">Remove</a>
 
                 </div>
             </div>

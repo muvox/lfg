@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@RequestMapping("/web")
 public class PosterController {
 
     @Autowired
@@ -46,7 +47,6 @@ public class PosterController {
     @RequestMapping(value="fetchPage")
     public String posterFetch(){
         gameApi.getPCGames();
-
         return "fetchPage";
         }
 

@@ -13,7 +13,9 @@ public class AppUser {
     private String username;
     private String password;
 
-    public long getId() {
+    public AppUser(){}
+
+        public long getId() {
         return id;
     }
 

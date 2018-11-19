@@ -4,17 +4,17 @@ import com.a1704471.lookingforgamer.model.AppUser;
 import com.a1704471.lookingforgamer.model.SignupForm;
 import com.a1704471.lookingforgamer.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/web")
 public class UserWebController {
 
     @Autowired
@@ -23,13 +23,30 @@ public class UserWebController {
     @Autowired
     AppUserRepository userRepo;
 
-    @RequestMapping(value = "/signup")
+    @PostMapping("/sign-up")
+    public String signUp(@ModelAttribute("appUser") AppUser user){
+
+        user.setPassword(bencoder.encode(user.getPassword()));
+        System.out.println("Saving user: "+user.getUsername()+" , with password: "+user.getPassword());
+
+        userRepo.save(user);
+
+        return "redirect:/web/login";
+    }
+
+    @RequestMapping(value = "signup")
     public String addUser(Model model){
-        model.addAttribute("signupform", new SignupForm());
+        model.addAttribute("appUser", new AppUser());
         return "signup";
     }
 
-    @RequestMapping(value = "saveuser", method = RequestMethod.POST)
+    @RequestMapping(value="/login")
+    public String login(){
+        System.out.println("Logging in!!!");
+        return "customLogin";
+    }
+
+     @RequestMapping(value = "/shitsaveuser", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("signupform") AppUser user, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
             String pwd = user.getPassword();

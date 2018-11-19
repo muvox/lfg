@@ -3,9 +3,9 @@
       xmlns="http://www.sprinfgramework.org/schema/security">
 <head>
     <title>Looking For Gamer</title>
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
 
-    <link type="text/css" rel="stylesheet" href="css/custom.min.css"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/custom.min.css}"/>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
@@ -18,7 +18,7 @@
     </div>
     <div class="row around-md" id="baska">
 
-        <a th:each="game : ${games}" th:href="@{/posters/{id}(id=${game.id})}" class="w-100 col-lg-4 d-flex align-items-stretch"
+        <a th:each="game : ${games}" th:href="@{/web/posters/{id}(id=${game.id})}" class="w-100 col-lg-4 d-flex align-items-stretch"
            style="overflow: hidden;padding-bottom: 1em; padding-right: 1em;">
 
                     <div class="card w-100" style="flex-direction: row;">
