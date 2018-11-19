@@ -43,25 +43,26 @@ public class WebSecurity {
             http
                     .antMatcher("/web/**")
                     .authorizeRequests()
-                    .antMatchers("/css/**").permitAll() // Enable css when logged out
-                    .and()
-                    .authorizeRequests()
                     .antMatchers("/web/signup", "/web/sign-up","/web/login","/web/appLogin").permitAll()
                     .and()
+                    .authorizeRequests()
+                    .anyRequest().authenticated()
+                    .and()
                     .formLogin()
-                    .loginPage("/web/login")
+                    .loginPage("/web/login").permitAll()
                     .loginProcessingUrl("/web/appLogin")
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .defaultSuccessUrl("/web/")
                     .and()
                     .logout()
+                    .logoutUrl("/web/logout")
+                    .logoutSuccessUrl("/web/login")
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .permitAll();
 
         }
     }
-
 
     /**
      * Api Security config
@@ -82,17 +83,34 @@ public class WebSecurity {
         @Override
         protected void configure(HttpSecurity http) throws Exception{
             http
-                    .antMatcher("/users/**")
-                    .cors()
+                    .requestMatchers()
+                        .antMatchers("/login","/users/**","/api/**")
                     .and()
-                    .csrf().disable()
                     .authorizeRequests()
                     .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                     .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and().csrf().disable();
+
+//            http
+//                    .antMatcher("/users/**")
+//                    .cors()
+//                    .and()
+//                    .authorizeRequests()
+//                    .antMatchers("/web/signup", "/web/sign-up","/web/login","/web/appLogin").permitAll()
+//                    .and()
+//                    .authorizeRequests()
+//                    .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+//                    .anyRequest().authenticated()
+//                    .and()
+//                    .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+//                    .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+//                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                    .and() // Make sure to use .and() to add the .csrf()
+//                    .csrf().disable();
         }
 
 
@@ -101,12 +119,6 @@ public class WebSecurity {
             auth.userDetailsService(userDetailsService).passwordEncoder(bencoder);
         }
     }
-
-
-
-
-
-
 
     @Bean
     CorsConfigurationSource corsConfigurationSource(){

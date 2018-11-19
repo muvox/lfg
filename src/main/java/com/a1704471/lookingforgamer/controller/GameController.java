@@ -15,7 +15,7 @@ public class GameController {
     @Autowired
     GameRepository repo;
 
-    @RequestMapping(value="/")
+    @RequestMapping(value="")
     public String indexPage(Model model){
         // ei näin joni, hyi hyi
         model.addAttribute("games", repo.findAll());

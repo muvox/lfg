@@ -46,29 +46,29 @@ public class UserWebController {
         return "customLogin";
     }
 
-     @RequestMapping(value = "/shitsaveuser", method = RequestMethod.POST)
-    public String save(@Valid @ModelAttribute("signupform") AppUser user, BindingResult bindingResult){
-        if(!bindingResult.hasErrors()){
-            String pwd = user.getPassword();
-            String hashPwd = bencoder.encode(pwd);
-
-            AppUser newUser = new AppUser();
-            newUser.setPassword(hashPwd);
-            newUser.setUsername(user.getUsername());
-
-            //for easy creation of admin user
-
-            if(userRepo.findByUsername(user.getUsername()) == null) {
-                System.out.println("Creating user with user name: "+newUser.getUsername());
-                userRepo.save(newUser);
-            } else {
-                bindingResult.rejectValue("username", "err.username", "Username already exists!");
-                return "signup";
-            }
-        } else {
-            bindingResult.rejectValue("passwordCheck","err.passCheck", "Password does not match");
-            return "signup";
-        }
-        return "redirect:/login";
-    }
+//     @RequestMapping(value = "/shitsaveuser", method = RequestMethod.POST)
+//    public String save(@Valid @ModelAttribute("signupform") AppUser user, BindingResult bindingResult){
+//        if(!bindingResult.hasErrors()){
+//            String pwd = user.getPassword();
+//            String hashPwd = bencoder.encode(pwd);
+//
+//            AppUser newUser = new AppUser();
+//            newUser.setPassword(hashPwd);
+//            newUser.setUsername(user.getUsername());
+//
+//            //for easy creation of admin user
+//
+//            if(userRepo.findByUsername(user.getUsername()) == null) {
+//                System.out.println("Creating user with user name: "+newUser.getUsername());
+//                userRepo.save(newUser);
+//            } else {
+//                bindingResult.rejectValue("username", "err.username", "Username already exists!");
+//                return "signup";
+//            }
+//        } else {
+//            bindingResult.rejectValue("passwordCheck","err.passCheck", "Password does not match");
+//            return "signup";
+//        }
+//        return "redirect:/login";
+//    }
 }
