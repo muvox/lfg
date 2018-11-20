@@ -11,7 +11,11 @@
 </head>
 <body style="padding-top:0">
 <h2 style="padding-left:1em">Looking For Gamer</h2>
-<a th:href="@{/web/logout}" class="btn btn-success">Logout</a>
+<a href="javascript: document.logoutForm.submit()" role="menuitem" class="btn btn-success"> Logout</a>
+
+<form name="logoutForm" th:action="@{/web/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+</form>
 
 
 <div class="container">

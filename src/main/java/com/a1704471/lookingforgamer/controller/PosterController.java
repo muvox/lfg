@@ -44,12 +44,6 @@ public class PosterController {
         return "posters";
     }
 
-    @RequestMapping(value="fetchPage")
-    public String posterFetch(){
-        gameApi.getPCGames();
-        return "fetchPage";
-        }
-
     @RequestMapping(value= "/add{id}", method = RequestMethod.GET)
     public String addPoster(@PathVariable("id") Long gameId, Model model){
         List<Game> gamesList = gameRepo.findGamesById(gameId);
@@ -68,7 +62,7 @@ public class PosterController {
         poster.setDate(date);
         postRepo.save(poster);
 
-        return "redirect:posters";
+        return "redirect:/posters/"+poster.getGameId()+"";
     }
 
     @RequestMapping(value="/posters/{id}", method = RequestMethod.GET)
