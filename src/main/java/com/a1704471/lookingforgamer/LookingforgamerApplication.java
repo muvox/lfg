@@ -1,6 +1,8 @@
 package com.a1704471.lookingforgamer;
 
 import com.a1704471.lookingforgamer.misc.IGDBAccess;
+import com.a1704471.lookingforgamer.model.AppUser;
+import com.a1704471.lookingforgamer.repository.AppUserRepository;
 import com.a1704471.lookingforgamer.repository.GameRepository;
 import com.a1704471.lookingforgamer.model.Poster;
 import com.a1704471.lookingforgamer.repository.PosterRepository;
@@ -95,6 +97,8 @@ public class LookingforgamerApplication {
 			for(Poster poster : repo.findAll()){
 				log.info(poster.toString());
 			}
+
+
 
 		};
 	}
