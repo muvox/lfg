@@ -64,7 +64,7 @@ public class IGDBAccess {
 
                     for(Game g : games){
                         if(g.getCoverUrl() == null) {
-                            g.setCoverUrl("http://lookingforgamer.herokuapp.com/image/placeholder.png");
+                            g.setCoverUrl("//lookingforgamer.herokuapp.com/image/placeholder.png");
                             System.out.println("Replaced cover url for game:  "+g.getName());
                         }
                     }
